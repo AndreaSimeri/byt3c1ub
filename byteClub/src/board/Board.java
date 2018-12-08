@@ -11,6 +11,12 @@ public class Board {
 	private byte myColor;
 	private byte myCapture,opponentCapture;
 	
+	public Board() {}
+	
+	public Board(byte matrix[][]) {
+		this.matrix=matrix;
+	}
+	
 	public Board(byte myColor) {
 		matrix=new byte[BOARD_SIZE][BOARD_SIZE];
 		this.myColor=myColor;
@@ -258,12 +264,42 @@ public class Board {
 		}
 	}
 	
+	public byte getMyColor() {
+		return myColor;
+	}
+	
+	public void setMyColor(byte color) {
+		myColor=color;
+	}
+	
 	public byte getMyCapture() {
 		return myCapture;
 	}
 	
+	public void setMyCapture(byte capture) {
+		myCapture=capture;
+	}
+	
 	public byte getOpponentCapture() {
 		return opponentCapture;
+	}
+	
+	public void setOpponentCapture(byte capture) {
+		opponentCapture=capture;
+	}
+	
+	public Board cloneBoard(Board board) {
+		byte matrix[][]=new byte[BOARD_SIZE][BOARD_SIZE];
+		for(int i=0;i<BOARD_SIZE;i++) {
+			for(int j=0;j<BOARD_SIZE;j++) {
+				matrix[i][j]=this.matrix[i][j];
+			}
+		}
+		Board clone=new Board(matrix);
+		clone.setMyColor(myColor);
+		clone.setMyCapture(myCapture);
+		clone.setOpponentCapture(opponentCapture);
+		return clone;
 	}
 
 }

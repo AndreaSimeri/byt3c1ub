@@ -34,7 +34,7 @@ public class Communication {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
     }
-    
+    //PENSARE A SOLUZIONE CON LISTA O ARRAY(OPPURE VALUE-1 PER LE RIGHE)
     private Move convertServerStringToMove(String serverString,byte turn) {
 		int r=0,c=0;
 		String rString="",cString="";
