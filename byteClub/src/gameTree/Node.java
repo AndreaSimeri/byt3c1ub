@@ -10,7 +10,7 @@ public class Node {
 	private Board board;
 	private Move move;
 	private Node parent;
-	private List<Board> childList;
+	private List<Node> childList;
 	private int value;
 
 }

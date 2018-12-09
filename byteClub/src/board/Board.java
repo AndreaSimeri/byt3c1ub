@@ -7,9 +7,9 @@ public class Board {
 	public static int TOTAL_CELLS=225;
 	
 	private byte matrix[][];
-	//-1 Opponent
-	// 0 Empty
-	// 1 Mine
+	//-1 WHITE
+	// 0 EMPTY
+	// 1 BLACK
 	private byte myColor;
 	private byte myCapture,opponentCapture;
 	private int myPiece,opponentPiece;
@@ -54,6 +54,7 @@ public class Board {
 		byte color=move.getColor();
 		matrix[r][c]=color;
 	}
+	//AGGIORNARE I CONTATORI DELLE PEDINE
 	//OSSERVAZIONE: RICORDARSI DI ELIMINARE IL PRIMO GIRO DI OGNI CICLO (NON SERVE)!!!
 	public void capture(Move move) {
 		byte moveColor=move.getColor();
@@ -71,7 +72,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(j==4) {
+			else if(j==3) {
 				if(matrix[r][c+j]==moveColor) {
 					matrix[r][c+1]=0;
 					matrix[r][c+2]=0;
@@ -97,7 +98,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(j==4) {
+			else if(j==3) {
 				if(matrix[r][c-j]==moveColor) {
 					matrix[r][c-1]=0;
 					matrix[r][c-2]=0;
@@ -123,7 +124,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(i==4) {
+			else if(i==3) {
 				if(matrix[r+i][c]==moveColor) {
 					matrix[r+1][c]=0;
 					matrix[r+2][c]=0;
@@ -149,7 +150,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(i==4) {
+			else if(i==3) {
 				if(matrix[r-i][c]==moveColor) {
 					matrix[r-1][c]=0;
 					matrix[r-2][c]=0;
@@ -175,7 +176,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(ij==4) {
+			else if(ij==3) {
 				if(matrix[r+ij][c+ij]==moveColor) {
 					matrix[r+1][c+1]=0;
 					matrix[r+2][c+2]=0;
@@ -201,7 +202,7 @@ public class Board {
 					break;
 				}
 			}
-			else if(ij==4) {
+			else if(ij==3) {
 				if(matrix[r-ij][c-ij]==moveColor) {
 					matrix[r-1][c-1]=0;
 					matrix[r-2][c-2]=0;
