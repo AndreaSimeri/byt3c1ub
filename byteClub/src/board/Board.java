@@ -3,6 +3,8 @@ package board;
 public class Board {
 	
 	public static int BOARD_SIZE=15;
+	//Potrebbe servire [TOTAL_CELLS - (myPiece+opponentPiece)] oppure [TOTAL_CELLS-((myPiece)/(myPiece+opponentPiece))]
+	public static int TOTAL_CELLS=225;
 	
 	private byte matrix[][];
 	//-1 Opponent
@@ -10,6 +12,8 @@ public class Board {
 	// 1 Mine
 	private byte myColor;
 	private byte myCapture,opponentCapture;
+	private int myPiece,opponentPiece;
+	//Inserire misura di riempimento della Board (magari distinguendo white e black).
 	
 	public Board() {}
 	
@@ -21,6 +25,7 @@ public class Board {
 		matrix=new byte[BOARD_SIZE][BOARD_SIZE];
 		this.myColor=myColor;
 		myCapture=0;opponentCapture=0;
+		myPiece=0;opponentPiece=0;
 	}
 	
 	public boolean validMove(Move move) {
@@ -55,13 +60,13 @@ public class Board {
 		byte opponentColor=(byte)(moveColor*-1);
 		int r=move.getR();int c=move.getC();
 		//EAST
-		for(int j=0;j<4 && c+j<BOARD_SIZE;j++) {
-			if(j==0) {
+		for(int j=1;j<4 && c+j<BOARD_SIZE;j++) {
+			/*if(j==0) {
 				if(matrix[r][c+j]!=moveColor) {
 					break;
 				}
-			}
-			else if(j==1 || j==2) {
+			}*/
+			if(j==1 || j==2) {
 				if(matrix[r][c+j]!=opponentColor) {
 					break;
 				}
@@ -81,13 +86,13 @@ public class Board {
 			}
 		}
 		//WEST
-		for(int j=0;j<4 && c-j>=0;j++) {
-			if(j==0) {
+		for(int j=1;j<4 && c-j>=0;j++) {
+			/*if(j==0) {
 				if(matrix[r][c-j]!=moveColor) {
 					break;
 				}
-			}
-			else if(j==1 || j==2) {
+			}*/
+			if(j==1 || j==2) {
 				if(matrix[r][c-j]!=opponentColor) {
 					break;
 				}
@@ -107,13 +112,13 @@ public class Board {
 			}
 		}
 		//SOUTH
-		for(int i=0;i<4 && r+i<BOARD_SIZE;i++) {
-			if(i==0) {
+		for(int i=1;i<4 && r+i<BOARD_SIZE;i++) {
+			/*if(i==0) {
 				if(matrix[r+i][c]!=moveColor) {
 					break;
 				}
-			}
-			else if(i==1 || i==2) {
+			}*/
+			if(i==1 || i==2) {
 				if(matrix[r+i][c]!=opponentColor) {
 					break;
 				}
@@ -133,13 +138,13 @@ public class Board {
 			}
 		}
 		//NORD
-		for(int i=0;i<4 && r-i>=0;i++) {
-			if(i==0) {
+		for(int i=1;i<4 && r-i>=0;i++) {
+			/*if(i==0) {
 				if(matrix[r-i][c]!=moveColor) {
 					break;
 				}
-			}
-			else if(i==1 || i==2) {
+			}*/
+			if(i==1 || i==2) {
 				if(matrix[r-i][c]!=opponentColor) {
 					break;
 				}
@@ -159,13 +164,13 @@ public class Board {
 			}
 		}
 		//SOUTH-EAST
-		for(int ij=0;ij<4 && r+ij<BOARD_SIZE && c+ij<BOARD_SIZE;ij++) {
-			if(ij==0) {
+		for(int ij=1;ij<4 && r+ij<BOARD_SIZE && c+ij<BOARD_SIZE;ij++) {
+			/*if(ij==0) {
 				if(matrix[r+ij][c+ij]!=moveColor) {
 					break;
 				}
-			}
-			else if(ij==1 || ij==2) {
+			}*/
+			if(ij==1 || ij==2) {
 				if(matrix[r+ij][c+ij]!=opponentColor) {
 					break;
 				}
@@ -185,13 +190,13 @@ public class Board {
 			}
 		}
 		//NORTH-WEST
-		for(int ij=0;ij<4 && r-ij>=0 && c-ij>=0;ij++) {
-			if(ij==0) {
+		for(int ij=1;ij<4 && r-ij>=0 && c-ij>=0;ij++) {
+			/*if(ij==0) {
 				if(matrix[r-ij][c-ij]!=moveColor) {
 					break;
 				}
-			}
-			else if(ij==1 || ij==2) {
+			}*/
+			if(ij==1 || ij==2) {
 				if(matrix[r-ij][c-ij]!=opponentColor) {
 					break;
 				}
@@ -211,13 +216,13 @@ public class Board {
 			}
 		}
 		//SOUTH-WEST
-		for(int ij=0;ij<4 && r+ij<BOARD_SIZE && c-ij>=0;ij++) {
-			if(ij==0) {
+		for(int ij=1;ij<4 && r+ij<BOARD_SIZE && c-ij>=0;ij++) {
+			/*if(ij==0) {
 				if(matrix[r+ij][c-ij]!=moveColor) {
 					break;
 				}
-			}
-			else if(ij==1 || ij==2) {
+			}*/
+			if(ij==1 || ij==2) {
 				if(matrix[r+ij][c-ij]!=opponentColor) {
 					break;
 				}
@@ -237,13 +242,13 @@ public class Board {
 			}
 		}
 		//NORTH-EAST
-		for(int ij=0;ij<4 && r-ij>=0 && c+ij<BOARD_SIZE;ij++) {
-			if(ij==0) {
+		for(int ij=1;ij<4 && r-ij>=0 && c+ij<BOARD_SIZE;ij++) {
+			/*if(ij==0) {
 				if(matrix[r-ij][c+ij]!=moveColor) {
 					break;
 				}
-			}
-			else if(ij==1 || ij==2) {
+			}*/
+			if(ij==1 || ij==2) {
 				if(matrix[r-ij][c+ij]!=opponentColor) {
 					break;
 				}
@@ -288,6 +293,22 @@ public class Board {
 		opponentCapture=capture;
 	}
 	
+	public int getMyPiece() {
+		return myPiece;
+	}
+	
+	public void setMyPiece(int piece) {
+		myPiece=piece;
+	}
+	
+	public int getOpponentPiece() {
+		return opponentPiece;
+	}
+	
+	public void setOpponentPiece(int piece) {
+		opponentPiece=piece;
+	}
+	
 	public Board cloneBoard(Board board) {
 		byte matrix[][]=new byte[BOARD_SIZE][BOARD_SIZE];
 		for(int i=0;i<BOARD_SIZE;i++) {
@@ -299,6 +320,8 @@ public class Board {
 		clone.setMyColor(myColor);
 		clone.setMyCapture(myCapture);
 		clone.setOpponentCapture(opponentCapture);
+		clone.setMyPiece(myPiece);
+		clone.setOpponentPiece(opponentPiece);
 		return clone;
 	}
 

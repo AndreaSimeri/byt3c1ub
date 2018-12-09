@@ -4,7 +4,7 @@ import java.util.List;
 
 import board.Board;
 import board.Move;
-
+//Forse può essere comodo implements Comparable<Node>
 public class Node {
 	
 	private Board board;

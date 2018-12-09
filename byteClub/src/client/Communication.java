@@ -46,7 +46,7 @@ public class Communication {
 			rString=""+moveString.charAt(0);
 		}
 		cString=""+moveString.charAt(moveString.length()-1);
-		switch(rString) {
+		/*switch(rString) {
 			case "1":{
 				r=0;break;
 			}
@@ -92,7 +92,8 @@ public class Communication {
 			case "15":{
 				r=14;break;
 			}
-		}
+		}*/
+		r=(Integer.parseInt(rString)-1);
 		switch(cString) {
 			case "A":{
 				c=14;break;
@@ -145,7 +146,7 @@ public class Communication {
     
     private String convertMoveToServerString(Move move) {
     	StringBuilder sb=new StringBuilder(3);
-    	switch(move.getR()) {
+    	/*switch(move.getR()) {
 			case 0:{
 				sb.append("1");break;
 			}
@@ -191,7 +192,8 @@ public class Communication {
 			case 14:{
 				sb.append("15");break;
 			}
-    	}
+    	}*/
+    	sb.append(move.getR()+1);
     	switch(move.getC()) {
     		case 0:{
     			sb.append("O");break;
